@@ -6,25 +6,24 @@ import playwright from 'eslint-plugin-playwright';
 export default [
   {
     ignores: [
-      '**/node_modules/**',
+      'node_modules',
+      'dist',
+      'playwright-report',
       'playwright.config.js',
-      '**/playwright-report/**',
-      '**/test-results/**',
     ],
   },
+
   {
+  ...pluginJs.configs.recommended,
     languageOptions: {
       globals: globals.node,
     },
   },
-  pluginJs.configs.recommended,
+  
   {
     ...playwright.configs['flat/recommended'],
-    rules: {
-      ...playwright.configs['flat/recommended'].rules,
-      'playwright/expect-expect': 'off',
-    },
   },
+
   {
     rules: {
       'no-unused-vars': 'error',
